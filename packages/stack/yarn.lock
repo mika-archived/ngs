@@ -72,7 +72,7 @@
     "@aws-cdk/aws-iam" "^0.28.0"
     "@aws-cdk/cdk" "^0.28.0"
 
-"@aws-cdk/aws-lambda@^0.28.0":
+"@aws-cdk/aws-lambda@0.28.0":
   version "0.28.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-lambda/-/aws-lambda-0.28.0.tgz#7f0a00e9aebcb2e5dbfdd28eb30d7285045ba74f"
   integrity sha512-dzpbAlInrq0v9LZO2BByZNTeEv3tNyzKRVcVdmG+0CwuJIshHNJjZ6hHfWerBxSE5pa7vO//j10660+8bDaADQ==
@@ -139,7 +139,7 @@
     "@aws-cdk/aws-iam" "^0.28.0"
     "@aws-cdk/cdk" "^0.28.0"
 
-"@aws-cdk/cdk@^0.28.0":
+"@aws-cdk/cdk@0.28.0", "@aws-cdk/cdk@^0.28.0":
   version "0.28.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/cdk/-/cdk-0.28.0.tgz#56d72375be5890ae8f5ecb615f544a29d36e8cce"
   integrity sha512-KfCLy2irBh2Br8V1X7uYPa6+S+GKJvIei4eRweC3gA2bJ/vjF85QBzTJ7DxCv9OQqjJEmBsH0cLzZNc8EUp/YQ==
@@ -293,7 +293,7 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha1-x57Zf380y48robyXkLzDZkdLS3k=
 
-aws-cdk@^0.28.0:
+aws-cdk@0.28.0:
   version "0.28.0"
   resolved "https://registry.yarnpkg.com/aws-cdk/-/aws-cdk-0.28.0.tgz#b74033fb63f100912f811eb3ca5a49f2643e84be"
   integrity sha512-AXVBUWF6UwZW6i7V6lVAORV3yPp/2QvPIuLhq7GxrYL3DLn6BUa9oBowNv+D6ZFEC408Zpv427x7T+cMVMHajQ==
@@ -1595,7 +1595,7 @@ socks@~2.3.2:
     ip "^1.1.5"
     smart-buffer "4.0.2"
 
-source-map-support@^0.5.6, source-map-support@^0.5.9:
+source-map-support@0.5.11, source-map-support@^0.5.6:
   version "0.5.11"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.11.tgz#efac2ce0800355d026326a0ca23e162aeac9a4e2"
   integrity sha512-//sajEx/fGL3iw6fltKMdPvy8kL3kJ2O3iuYlRoT3k9Kb4BjOoZ+BZzaNHeuaruSt+Kf3Zk9tnfAQg9/AJqUVQ==
@@ -1790,7 +1790,7 @@ type-check@~0.3.2:
   dependencies:
     prelude-ls "~1.1.2"
 
-typescript@^3.3.3333:
+typescript@3.4.2:
   version "3.4.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.4.2.tgz#9ed4e6475d906f589200193be056f5913caed481"
   integrity sha512-Og2Vn6Mk7JAuWA1hQdDQN/Ekm/SchX80VzLhjKN9ETYrIepBFAd8PkOdOTK2nKt0FCkmMZKBJvQ1dV1gIxPu/A==
