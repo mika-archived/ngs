@@ -1,4 +1,17 @@
 {
   "extends": ["config:base"],
-  "timezone": "Asia/Tokyo"
+  "timezone": "Asia/Tokyo",
+  "patch": {
+    "automerge": true
+  },
+  "packageRules": [
+    {
+      "packageNames": ["aws-cdk"],
+      "packagePatterns": ["^@aws-cdk/"],
+      "groupName": "aws-cdk monorepo",
+      "patch": {
+        "automerge": false
+      }
+    }
+  ]
 }
