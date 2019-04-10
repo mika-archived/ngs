@@ -8,13 +8,13 @@
   },
   "settings": {
     // should use plugin:import/typescript in vnext (> v2.16.0)
-    "import/extensions": [".js", ".ts"],
+    "import/extensions": [".js", ".ts", ".d.ts"],
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts"]
+      "@typescript-eslint/parser": [".ts", ".d.ts"]
     },
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".ts"]
+        "extensions": [".js", ".ts", ".d.ts"]
       }
     }
   },
