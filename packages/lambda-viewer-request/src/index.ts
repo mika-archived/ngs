@@ -10,17 +10,17 @@ import * as qs from "querystring";
  * Rewritten URL has `transformed_` prefix and formatted parameter such as `(${key1=value1,key2=...})`.
  * For example;
  * * https://ngs.mochizuki.moe/anna.png
- *    * If supported WebP : /anna.png_transformed.webp
+ *    * If supported WebP : /c/f=webp/anna.png
  *    * If not supported  : /anna.png
  *
  * * https://ngs.mochizuki.moe/anna.png?w=128&h=128
  * * https://ngs.mochizuki.moe/c/w=128,h=128/anna.png
- *    *                   : /anna.png_transformed_(h=128,w=128).png
+ *    *                   : /c/h=128,w=128/anna.png
  *
  * * https://ngs.mochizuki.moe/anna.png?w=128&h=128&f=auto
  * * https://ngs.mochizuki.moe/c/w=128,h=128,f=auto/anna.png
- *    * If supported WebP : /anna.png_transformed_(h=128,w=128).webp
- *    * If not supported  : /anna.png_transformed_(h=128,w=128).png
+ *    * If supported WebP : /c/f=webp,h=128,w=128/anna.png
+ *    * If not supported  : /c/h=128,w=128/anna.png
  */
 type Parameters = {
   a?: number; // aspect
@@ -37,7 +37,7 @@ type Parameters = {
   w?: number; // width
 };
 
-const ACCEPTED_PARAMS = ["a", "b", "c", "g", "h", "o", "q", "r", "u", "v", "w"];
+const ACCEPTED_PARAMS = ["a", "b", "c", "f", "g", "h", "o", "q", "r", "u", "v", "w"];
 const SUPPORTED_INPUT_FORMATS = ["jpeg", "jpg", "png", "webp", "tiff", "gif", "svg"];
 const SUPPORTED_OUTPUT_FORMATS = ["jpeg", "jpg", "png", "webp", "tiff"];
 
@@ -62,36 +62,36 @@ exports.handler = (event: CloudFrontRequestEvent, _context: Context, callback: C
     return callback(null, request); // through
   }
 
-  const acceptWebP = headers.accept ? headers.accept[0].value.includes("image/webp") : false;
+  const webp = headers.accept ? headers.accept[0].value.includes("image/webp") : false;
 
   if (Object.keys(parameters).length === 0) {
     // no parameters, process Accept header only
-    request.uri = acceptWebP ? `${request.uri}_transformed.webp` : request.uri;
+    request.uri = webp ? `/c/f=webp/${path.substring(1)}` : request.uri;
     console.log(`Request URI rewritten to ${request.uri}`);
     return callback(null, request);
   }
 
-  const ext = extname(path).substring(1);
+  if (parameters.f) {
+    if (parameters.f !== "auto" && !SUPPORTED_OUTPUT_FORMATS.includes(parameters.f)) {
+      return callback(null, request); // through
+    }
+
+    if (parameters.f === "auto") {
+      const ext = extname(path).substring(1);
+      if (!SUPPORTED_INPUT_FORMATS.includes(ext)) {
+        return callback(null, request); // through
+      }
+      parameters.f = webp ? "webp" : ext;
+    }
+  }
+
   const query = Object.keys(parameters)
     .sort()
     .filter(w => ACCEPTED_PARAMS.includes(w))
     .map(w => `${w}=${(parameters as any)[w]}`)
     .join(",");
 
-  if (parameters.f) {
-    let format = parameters.f;
-    if (!SUPPORTED_OUTPUT_FORMATS.includes(format) && format !== "auto") {
-      return callback(null, request); // through
-    }
-
-    if (parameters.f === "auto") {
-      format = acceptWebP ? "webp" : ext;
-    }
-    request.uri = `${path}_transformed_(${query}).${format}`;
-  } else {
-    request.uri = `${path}_transformed_(${query}).${ext}`;
-  }
-
+  request.uri = `/c/${query}/${path.substring(1)}`;
   console.log(`Request URI rewritten to ${request.uri}`);
   return callback(null, request);
 };
