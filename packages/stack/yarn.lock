@@ -51,7 +51,7 @@
     "@aws-cdk/aws-sns" "^0.28.0"
     "@aws-cdk/cdk" "^0.28.0"
 
-"@aws-cdk/aws-cloudfront@^0.28.0":
+"@aws-cdk/aws-cloudfront@0.28.0":
   version "0.28.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-cloudfront/-/aws-cloudfront-0.28.0.tgz#bdb9a525839ca46dd5a24b3516dbb823f539bc47"
   integrity sha512-gmwSHzoQqYN53ejkiYUACHmzpijEOLJUENanLSrCkHgAcZ+amB8vufC24aM/pwYNvJshgRmIr/1OpB8Qzn2tDw==
@@ -89,7 +89,7 @@
     "@aws-cdk/aws-iam" "^0.28.0"
     "@aws-cdk/cdk" "^0.28.0"
 
-"@aws-cdk/aws-iam@^0.28.0":
+"@aws-cdk/aws-iam@0.28.0", "@aws-cdk/aws-iam@^0.28.0":
   version "0.28.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-iam/-/aws-iam-0.28.0.tgz#83667eca7a2c8a34c08a6ce43263e8c4b7117754"
   integrity sha512-35cLTTxmWcnip3cptzh2duUuQFn7Uijg44ZY04XXFhpZ6frodCQby3xtkh8eEzcJPR+R0oDrXnGK7lJFdXPl/w==
@@ -149,7 +149,7 @@
   dependencies:
     "@aws-cdk/cdk" "^0.28.0"
 
-"@aws-cdk/aws-s3@^0.28.0":
+"@aws-cdk/aws-s3@0.28.0", "@aws-cdk/aws-s3@^0.28.0":
   version "0.28.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-s3/-/aws-s3-0.28.0.tgz#0c9072e149c839c762ebd4388634d42292b4c604"
   integrity sha512-9wTwPZABc795TK6w9+u8Hp4Ok5Z+0Dp4mfqgbJn/q+RkSlS4gK1FyXEOex9k9WDrXHRa/KCsED2rXg9Ql5RdXQ==
@@ -1846,7 +1846,7 @@ tough-cookie@~2.4.3:
     psl "^1.1.24"
     punycode "^1.4.1"
 
-ts-node@^8.0.3:
+ts-node@8.0.3:
   version "8.0.3"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-8.0.3.tgz#aa60b836a24dafd8bf21b54766841a232fdbc641"
   integrity sha512-2qayBA4vdtVRuDo11DEFSsD/SFsBXQBRZZhbRGSIkmYmVkWjULn/GGMdG10KVqkaGndljfaTD8dKjWgcejO8YA==
