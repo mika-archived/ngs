@@ -1,0 +1,20 @@
+{
+  "name": "@ngs/lambda-viewer-request",
+  "version": "0.1.0",
+  "description": "Lambda Function that pre-transform images at the uploaded to S3.",
+  "main": "lib/index.js",
+  "repository": "https://github.com/mika-f/ngs",
+  "author": "Mikazuki Fuyuno <mikazuki_fuyuno@outlook.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.23",
+    "typescript": "^3.4.2"
+  },
+  "dependencies": {
+    "querystring": "^0.2.0"
+  }
+}
