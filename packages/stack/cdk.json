@@ -1,3 +1,3 @@
 {
-  "app": "node bin/ngs.js"
+  "app": "ts-node bin/ngs.ts"
 }

@@ -12,10 +12,13 @@
   "devDependencies": {
     "@types/node": "8.10.45",
     "aws-cdk": "0.28.0",
+    "ts-node": "^8.0.3",
     "typescript": "3.4.3"
   },
   "dependencies": {
+    "@aws-cdk/aws-cloudfront": "^0.28.0",
     "@aws-cdk/aws-lambda": "0.28.0",
+    "@aws-cdk/aws-s3": "^0.28.0",
     "@aws-cdk/cdk": "0.28.0",
     "source-map-support": "0.5.12"
   }
