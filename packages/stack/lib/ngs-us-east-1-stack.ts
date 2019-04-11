@@ -53,7 +53,7 @@ export default class NgsUsEast1Stack extends cdk.Stack {
 
     if (process.env.AWS_S3_BACKEND_BUCKET_NAME) {
       // import exists bucket from domain name
-      const s3BucketSource = s3.Bucket.import(this, `NgsS3BackendSource`, { bucketArn: `arn:aws:s3:::${process.env.AWS_S3_BACKEND_BUCKET_NAME}` });
+      const bucket = s3.Bucket.import(this, `NgsS3BackendSource`, { bucketArn: `arn:aws:s3:::${process.env.AWS_S3_BACKEND_BUCKET_NAME}` });
 
       // create a origin access identity for bucket access
       const originAccessIdentity = new cloudfront.CfnCloudFrontOriginAccessIdentity(this, `S3OriginAccessIdentity`, {
@@ -61,13 +61,6 @@ export default class NgsUsEast1Stack extends cdk.Stack {
           comment: `access-identity-${process.env.AWS_S3_BACKEND_BUCKET_NAME}.s3.amazonaws.com`
         }
       });
-
-      // not working to imported bucket?
-      const permission = new iam.PolicyStatement(iam.PolicyStatementEffect.Allow);
-      permission.addPrincipal(new iam.ArnPrincipal(`arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${originAccessIdentity.cloudFrontOriginAccessIdentityId}`));
-      permission.addAction("s3:GetObject");
-      permission.addResource(`arn:aws:s3:::${process.env.AWS_S3_BACKEND_BUCKET_NAME}/*`);
-      s3BucketSource.addToResourcePolicy(permission);
 
       cfProps.originConfigs.push({
         behaviors: [
@@ -79,7 +72,7 @@ export default class NgsUsEast1Stack extends cdk.Stack {
         ],
         s3OriginSource: {
           originAccessIdentity,
-          s3BucketSource
+          s3BucketSource: bucket
         }
       });
     } else if (process.env.AWS_HTTPS_BACKEND_DOMAIN) {
@@ -99,7 +92,6 @@ export default class NgsUsEast1Stack extends cdk.Stack {
       throw new Error("You must set AWS_S3_BACKEND_BUCKET_NAME or AWS_HTTPS_BACKEND_DOMAIN");
     }
 
-    console.log(cfProps.originConfigs[0].s3OriginSource);
     // Should I use cloudfront.CfnDistribution ...?
     new cloudfront.CloudFrontWebDistribution(this, "NgsCloudFront", cfProps);
 
