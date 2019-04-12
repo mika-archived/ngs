@@ -8,6 +8,7 @@ ngs : transform/deliver images for you.
 ## Features
 
 * Deliver WebP or Original according to the Accept header.
+* Free and can be used by personal (not business).
 
 
 ## Examples
