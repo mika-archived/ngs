@@ -5,6 +5,25 @@ ngs : transform/deliver images for you.
 > NOTE: This is a experimental project, please use it at your own risk.
 
 
+## Features
+
+* Deliver WebP or Original according to the Accept header.
+
+
+## Examples
+
+### Delivery
+
+At the first, write below markup in your HTML file(s).
+
+```html
+<img src="https://ngs.mochizuki.moe/anna.png" />
+```
+
+If your browser supports WebP, ngs returns WebP encoded image.  
+However your browser doesn't supports WebP, ngs returns PNG original image.
+
+
 ## Deployment
 
 1. Configure Environment Variables
