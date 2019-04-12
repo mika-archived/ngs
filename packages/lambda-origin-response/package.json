@@ -12,12 +12,12 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "8.10.24",
-    "@types/aws-sdk": "^2.7.0",
-    "@types/sharp": "^0.22.1",
+    "@types/aws-sdk": "2.7.0",
+    "@types/sharp": "0.22.1",
     "typescript": "3.4.2"
   },
   "dependencies": {
-    "aws-sdk": "^2.437.0",
-    "sharp": "^0.22.0"
+    "aws-sdk": "2.437.0",
+    "sharp": "0.22.0"
   }
 }
