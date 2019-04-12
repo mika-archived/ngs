@@ -59,7 +59,8 @@ export default class NgsUsEast1Stack extends cdk.Stack {
           {
             allowedMethods: cloudfront.CloudFrontAllowedMethods.GET_HEAD,
             isDefaultBehavior: true,
-            defaultTtlSeconds: 86400 * 30 // 1 month
+            defaultTtlSeconds: 86400 * 30, // 1 month
+            minTtlSeconds: 86400 // 24 hours
           }
         ],
         s3OriginSource: {
@@ -73,7 +74,8 @@ export default class NgsUsEast1Stack extends cdk.Stack {
           {
             allowedMethods: cloudfront.CloudFrontAllowedMethods.GET_HEAD,
             isDefaultBehavior: true,
-            defaultTtlSeconds: 86400 * 30 // 1 month
+            defaultTtlSeconds: 86400 * 30, // 1 month
+            minTtlSeconds: 86400 // 24 hours
           }
         ],
         customOriginSource: {
