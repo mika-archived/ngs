@@ -41,7 +41,7 @@ const ACCEPTED_PARAMS = ["a", "b", "c", "f", "g", "h", "o", "q", "r", "u", "v", 
 const SUPPORTED_INPUT_FORMATS = ["jpeg", "jpg", "png", "webp", "tiff", "gif", "svg"];
 const SUPPORTED_OUTPUT_FORMATS = ["jpeg", "jpg", "png", "webp", "tiff"];
 
-const ifx = /\/c\/(.*)?\//;
+const ifx = /\/c\/(.+?)\//;
 
 exports.handler = (event: CloudFrontRequestEvent, _context: Context, callback: CloudFrontRequestCallback) => {
   const { request } = event.Records[0].cf;
