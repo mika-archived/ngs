@@ -3,7 +3,6 @@ import * as path from "path";
 
 import * as cdk from "@aws-cdk/cdk";
 import * as cloudfront from "@aws-cdk/aws-cloudfront";
-import * as iam from "@aws-cdk/aws-iam";
 import * as lambda from "@aws-cdk/aws-lambda";
 import * as s3 from "@aws-cdk/aws-s3";
 
@@ -11,13 +10,6 @@ export default class NgsUsEast1Stack extends cdk.Stack {
   // eslint-disable-next-line no-useless-constructor
   public constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
-
-    const layer = new lambda.LayerVersion(this, "NgsSharedLayer", {
-      code: lambda.Code.directory(path.join(__dirname, "..", "..", "lambda-layers")),
-      compatibleRuntimes: [lambda.Runtime.NodeJS810],
-      description: "A Lambda Layer for ngs functions",
-      license: "MIT"
-    });
 
     // viewer-request triggered
     new lambda.Function(this, "NgsViewerRequestFunc", {
@@ -29,10 +21,9 @@ export default class NgsUsEast1Stack extends cdk.Stack {
     });
 
     // origin-response triggers
-    new lambda.Function(this, "NgsOriginResponseFunc", {
+    const originResponseFunc = new lambda.Function(this, "NgsOriginResponseFunc", {
       code: lambda.Code.directory(path.join(__dirname, "..", "..", "lambda-origin-response/lib")),
       handler: "index.handler",
-      layers: [layer],
       memorySize: 256,
       runtime: lambda.Runtime.NodeJS810,
       timeout: 30
@@ -54,6 +45,7 @@ export default class NgsUsEast1Stack extends cdk.Stack {
     if (process.env.AWS_S3_BACKEND_BUCKET_NAME) {
       // import exists bucket from domain name
       const bucket = s3.Bucket.import(this, `NgsS3BackendSource`, { bucketArn: `arn:aws:s3:::${process.env.AWS_S3_BACKEND_BUCKET_NAME}` });
+      bucket.grantRead(originResponseFunc);
 
       // create a origin access identity for bucket access
       const originAccessIdentity = new cloudfront.CfnCloudFrontOriginAccessIdentity(this, `S3OriginAccessIdentity`, {
