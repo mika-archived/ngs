@@ -1,22 +1,10 @@
 {
-  "extends": ["airbnb-base", "plugin:prettier/recommended"],
+  "extends": ["airbnb-base", "plugin:prettier/recommended", "plugin:import/typescript"],
   "plugins": ["@typescript-eslint"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "sourceType": "module",
     "project": "./tsconfig.json"
-  },
-  "settings": {
-    // should use plugin:import/typescript in vnext (> v2.16.0)
-    "import/extensions": [".js", ".ts", ".d.ts"],
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".d.ts"]
-    },
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".ts", ".d.ts"]
-      }
-    }
   },
   "rules": {
     // https://github.com/airbnb/javascript/blob/60b96d322277c4c71a21a05caba8eb3320e0e3fa/packages/eslint-config-airbnb-base/rules/imports.js#L71-L95
