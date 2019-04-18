@@ -10,7 +10,7 @@
   "devDependencies": {
     "@types/aws-lambda": "8.10.24",
     "@types/sharp": "0.22.1",
-    "typescript": "3.4.2"
+    "typescript": "3.4.4"
   },
   "dependencies": {}
 }
