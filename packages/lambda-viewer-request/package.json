@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "8.10.24",
-    "typescript": "3.4.4"
+    "typescript": "3.4.5"
   },
   "dependencies": {
     "querystring": "0.2.0"
