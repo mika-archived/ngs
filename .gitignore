@@ -90,4 +90,9 @@ typings/
 
 # End of https://www.gitignore.io/api/node
 
+# This repository is full TypeScript project, ignore *.js files.
 *.js
+
+# Jest Config
+!jest.config.js
+
