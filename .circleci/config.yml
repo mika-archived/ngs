@@ -1,0 +1,82 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2.1
+executors:
+  node:
+    docker:
+      - image: circleci/node:10.15
+    working_directory: ~/repo
+
+commands:
+  restore_repo:
+    steps:
+      - restore_cache:
+          keys:
+            - v1-repo-{{ .Branch }}-{{ .Revision }}
+            - v1-repo-{{ .Branch }}-
+            - v1-repo-
+
+  save_repo:
+    steps:
+      - save_cache:
+          paths:
+            - .
+          key: v1-repo-{{ .Branch }}-{{ .Revision }}
+
+jobs:
+  checkout_code:
+    executor: node
+    steps:
+      - restore_repo
+      - checkout
+      - save_repo
+
+  # test_origin:
+  #   executor: node
+  #   steps:
+  #     - restore_repo
+
+  # test_viewer:
+  #   executor: node
+  #   steps:
+  #     - restore_repo
+
+  # test_stacks:
+  #   executor: node
+  #   steps:
+  #     - restore_repo
+
+  lint:
+    executor: node
+    steps:
+      - restore_repo
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies
+      - run: yarn install --frozen-lockfile
+      - run: yarn run lint
+      - save_cache:
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+workflows:
+  version: 2.1
+  tests:
+    jobs:
+      - checkout_code
+      # - test_origin
+      #     requires:
+      #       - checkout_code
+      # - test_viewer
+      #     requires:
+      #       - checkout_code
+      # - test_stacks
+      #     requires:
+      #       - checkout_code
+      - lint:
+          requires:
+            - checkout_code
