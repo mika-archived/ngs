@@ -25,6 +25,39 @@ commands:
             - .
           key: v1-repo-{{ .Branch }}-{{ .Revision }}
 
+  run_test:
+    parameters:
+      cwd:
+        type: string
+    steps:
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "<< parameters.cwd >>/yarn.lock" }}
+            - v1-dependencies-
+      - run: yarn --cwd << parameters.cwd >> install --frozen-lockfile
+      - run: yarn --cwd << parameters.cwd >> test
+      - save_cache:
+          paths:
+            - ~/.cache/yarn
+          key: v1-dependencies-{{ checksum "<< parameters.cwd >>/yarn.lock" }}
+
+  run_lint:
+    parameters:
+      cwd:
+        type: string
+    steps:
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "<< parameters.cwd >>/yarn.lock" }}
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies-
+      - run: yarn --cwd << parameters.cwd >> install --frozen-lockfile
+      - run: yarn lint << parameters.cwd >>{__tests__,src,lib}/**/*.ts
+      - save_cache:
+          paths:
+            - ~/.cache/yarn
+          key: v1-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "<< parameters.cwd >>/yarn.lock" }}
+
 jobs:
   checkout_code:
     executor: node
@@ -37,6 +70,8 @@ jobs:
   #   executor: node
   #   steps:
   #     - restore_repo
+  #     - run_test:
+  #         cwd: ./packages/lambda-origin-response
 
   # test_viewer:
   #   executor: node
@@ -48,35 +83,47 @@ jobs:
   #   steps:
   #     - restore_repo
 
-  lint:
+  lint_origin:
     executor: node
     steps:
       - restore_repo
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "yarn.lock" }}
-            - v1-dependencies
-      - run: yarn install --frozen-lockfile
-      - run: yarn run lint
-      - save_cache:
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
+      - run_lint:
+          cwd: ./packages/lambda-origin-response
+
+  lint_viewer:
+    executor: node
+    steps:
+      - restore_repo
+      - run_lint:
+          cwd: ./packages/lambda-viewer-request
+
+  lint_stacks:
+    executor: node
+    steps:
+      - restore_repo
+      - run_lint:
+          cwd: ./packages/stack
 
 workflows:
   version: 2.1
   tests:
     jobs:
       - checkout_code
-      # - test_origin
+      # - test_origin:
       #     requires:
       #       - checkout_code
-      # - test_viewer
+      # - test_viewer:
       #     requires:
       #       - checkout_code
-      # - test_stacks
+      # - test_stacks:
       #     requires:
       #       - checkout_code
-      - lint:
+      - lint_origin:
+          requires:
+            - checkout_code
+      - lint_viewer:
+          requires:
+            - checkout_code
+      - lint_stacks:
           requires:
             - checkout_code
