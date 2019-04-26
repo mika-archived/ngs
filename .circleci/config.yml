@@ -45,6 +45,8 @@ commands:
     parameters:
       cwd:
         type: string
+      dir:
+        type: string
     steps:
       - restore_cache:
           keys:
@@ -53,7 +55,7 @@ commands:
             - v1-dependencies-
       - run: yarn install --frozen-lockfile
       - run: yarn --cwd << parameters.cwd >> install --frozen-lockfile
-      - run: yarn lint << parameters.cwd >>/{__tests__,src,lib}/**/*.ts
+      - run: yarn lint << parameters.cwd >>/<<parameters.dir>>/**/*.ts
       - save_cache:
           paths:
             - ~/.cache/yarn
@@ -67,12 +69,12 @@ jobs:
       - checkout
       - save_repo
 
-  # test_origin:
-  #   executor: node
-  #   steps:
-  #     - restore_repo
-  #     - run_test:
-  #         cwd: ./packages/lambda-origin-response
+  test_origin:
+    executor: node
+    steps:
+      - restore_repo
+      - run_test:
+          cwd: ./packages/lambda-origin-response
 
   # test_viewer:
   #   executor: node
@@ -90,6 +92,7 @@ jobs:
       - restore_repo
       - run_lint:
           cwd: ./packages/lambda-origin-response
+          dir: "{__tests__,src}"
 
   lint_viewer:
     executor: node
@@ -97,6 +100,7 @@ jobs:
       - restore_repo
       - run_lint:
           cwd: ./packages/lambda-viewer-request
+          dir: src
 
   lint_stacks:
     executor: node
@@ -104,15 +108,16 @@ jobs:
       - restore_repo
       - run_lint:
           cwd: ./packages/stack
+          dir: lib
 
 workflows:
   version: 2.1
   tests:
     jobs:
       - checkout_code
-      # - test_origin:
-      #     requires:
-      #       - checkout_code
+      - test_origin:
+          requires:
+            - checkout_code
       # - test_viewer:
       #     requires:
       #       - checkout_code
