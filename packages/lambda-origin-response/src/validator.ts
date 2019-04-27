@@ -1,5 +1,22 @@
 import * as yup from "yup";
 
+type Parameters = {
+  a: number;
+  b: string;
+  c: string;
+  cr: string;
+  f: string;
+  g: number;
+  h: number;
+  o: boolean;
+  q: number;
+  r: string;
+  through: string;
+  u: boolean;
+  v: string;
+  w: number;
+};
+
 const SUPPORTED_FORMATS = ["jpg", "jpeg", "png", "gif", "tiff"];
 
 const REGEXPS = {
@@ -35,12 +52,14 @@ const schema = yup.object().shape({
   cr: yup.string().matches(REGEXPS.CLIP_FLOAT_FORMAT).default("0:0:1:1"),
   // format, nullable, one of enums
   f: yup.string().oneOf(["webp", "auto"].concat(SUPPORTED_FORMATS)).default("auto"),
-  // origin, nullable, 1 - 0, default 4
+  // origin, nullable, 1 - 9, default 4
   g: yup.number().min(1).max(9).default(4),
   // height, nullable, 1 -
   h: yup.number().min(1).notRequired(),
   // optimize flag, nullable, default: true
   o: yup.boolean().default(true),
+  // quality, nullable, 1 - 100, default: 75
+  q: yup.number().min(1).max(100).default(75),
   // rotate, nullable, 1 - 8 or "auto", default: 1
   r: yup.string().matches(REGEXPS.ROTATE_FORMAT).default("1"),
   // through, nullable, xxx or xxx:xxx...
@@ -64,7 +83,7 @@ export async function validate(obj: object): Promise<boolean> {
   }
 }
 
-export async function cast(obj: object): Promise<{}> {
+export async function cast(obj: object): Promise<Parameters> {
   const value = await schema.cast(obj);
   return value;
 }
