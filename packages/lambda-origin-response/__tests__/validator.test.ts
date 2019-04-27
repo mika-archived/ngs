@@ -41,6 +41,10 @@ describe("validator", () => {
         expect(value.o).toBeTruthy();
       });
 
+      it("q is 75", () => {
+        expect(value.q).toBe(75);
+      });
+
       it("r is 1", () => {
         expect(value.r).toBe("1");
       });
@@ -73,13 +77,14 @@ describe("validator", () => {
           cr: "0.25:0.25:0.75:0.75",
           f: "webp",
           g: "1",
-          h: 1080,
+          h: "1080",
           o: "1",
+          q: "100",
           r: "auto",
           through: "png",
           u: "0",
           v: "2",
-          w: 1920
+          w: "1920"
         });
       });
 
@@ -113,6 +118,10 @@ describe("validator", () => {
 
       it("o is true", () => {
         expect(value.o).toBeTruthy();
+      });
+
+      it("q is 100", () => {
+        expect(value.q).toBe(100);
       });
 
       it("r is auto", () => {
@@ -353,6 +362,32 @@ describe("validator", () => {
 
         it("passed str", async () => {
           expect(await validate({ o: "str" })).toBeFalsy();
+        });
+      });
+    });
+
+    describe("parameter q is", () => {
+      describe("valid (returns true)", () => {
+        it("passed 1", async () => {
+          expect(await validate({ q: "1" })).toBeTruthy();
+        });
+
+        it("passed 100", async () => {
+          expect(await validate({ q: "100" })).toBeTruthy();
+        });
+      });
+
+      describe("invalid (returns false)", () => {
+        it("passed null", async () => {
+          expect(await validate({ q: null })).toBeFalsy();
+        });
+
+        it("passed -1", async () => {
+          expect(await validate({ q: "-1" })).toBeFalsy();
+        });
+
+        it("passed 101", async () => {
+          expect(await validate({ q: "101" })).toBeFalsy();
         });
       });
     });
