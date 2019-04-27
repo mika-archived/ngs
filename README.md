@@ -26,7 +26,9 @@ ngs : ImageFlux alternative
 サポートしていない場合は、エンコードしていないオリジナルの画像を配信します。
 
 
+## デプロイ
 
+`packages/*` 以下にある `README.md` を参照してください。
 
 
 ## Special Thanks

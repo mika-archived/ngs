@@ -13,7 +13,7 @@ export default class NgsUsEast1Stack extends cdk.Stack {
 
     // viewer-request triggered
     new lambda.Function(this, "NgsViewerRequestFunc", {
-      code: lambda.Code.directory(path.join(__dirname, "..", "..", "lambda-viewer-request/lib")),
+      code: lambda.Code.directory(path.join(__dirname, "..", "..", "aws-lambda-edge-viewer-request/lib")),
       handler: "index.handler",
       memorySize: 128,
       runtime: lambda.Runtime.NodeJS810,
@@ -22,7 +22,7 @@ export default class NgsUsEast1Stack extends cdk.Stack {
 
     // origin-response triggers
     const originResponseFunc = new lambda.Function(this, "NgsOriginResponseFunc", {
-      code: lambda.Code.directory(path.join(__dirname, "..", "..", "lambda-origin-response/lib")),
+      code: lambda.Code.directory(path.join(__dirname, "..", "..", "aws-lambda-edge-origin-response/lib")),
       handler: "index.handler",
       memorySize: 256,
       runtime: lambda.Runtime.NodeJS810,
