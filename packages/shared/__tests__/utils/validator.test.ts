@@ -1,4 +1,4 @@
-import { cast, validate } from "../src/validator";
+import { cast, validate } from "../../src/utils/validator";
 
 describe("validator", () => {
   describe("#cast", () => {

@@ -1,0 +1,24 @@
+{
+  "name": "@ngs/shared",
+  "version": "0.1.0",
+  "description": "ngs shared library",
+  "main": "lib/index.js",
+  "repository": "https://github.com/mika-f/ngs",
+  "author": "Mikazuki Fuyuno <mikazuki_fuyuno@outlook.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "test": "jest"
+  },
+  "dependencies": {
+    "yup": "^0.27.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "@types/yup": "^0.26.12",
+    "jest": "^24.7.1",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.5"
+  }
+}
