@@ -67,11 +67,11 @@ jobs:
             - ~/.cache/yarn
           key: v1-dependencies-{{ checksum "~/lockfiles" }}
 
-  test_origin:
-    executor: node
-    steps:
-      - run_test:
-          cwd: ./packages/lambda-origin-response
+  # test_origin:
+    # executor: node
+    # steps:
+      # - run_test:
+          # cwd: ./packages/lambda-origin-response
 
   test_shared:
     executor: node
@@ -107,9 +107,9 @@ workflows:
       - install_deps:
           requires:
             - checkout_code
-      - test_origin:
-          requires:
-            - install_deps
+      # - test_origin:
+          # requires:
+            # - install_deps
       - test_shared:
           requires:
             - install_deps
