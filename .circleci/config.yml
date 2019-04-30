@@ -29,6 +29,10 @@ commands:
           keys:
             - v1-dependencies-{{ checksum "~/lockfiles" }}
 
+  apply_patches:
+    steps:
+      - run: patch -u lerna.json < ./patches/lerna.json.patch
+
   run_test:
     parameters:
       cwd:
@@ -54,6 +58,7 @@ jobs:
     steps:
       - restore_repo
       - restore_deps
+      - apply_patches
       - run: yarn install --frozen-lockfile
       - run: yarn bootstrap
       - unified_cache
@@ -89,6 +94,7 @@ jobs:
     steps:
       - restore_repo
       - restore_deps
+      - apply_patches
       - run: yarn install --frozen-lockfile
       - run: yarn bootstrap
       - run: yarn lint "./packages/*/{src,lib,__tests__}/**/*.ts"

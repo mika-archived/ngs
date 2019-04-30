@@ -1,0 +1,15 @@
+--- ./a/lerna.json      2019-04-30 16:54:18.000000000 +0900
++++ ./b/lerna.json      2019-04-30 16:54:13.000000000 +0900
+@@ -1,6 +1,11 @@
+ {
+   "version": "0.1.0",
+   "npmClient": "yarn",
++  "command": {
++    "bootstrap": {
++      "npmClientArgs": ["--frozen-lockfile"]
++    }
++  },
+   "packages": [
+     "packages/*"
+   ]
+
