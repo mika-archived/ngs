@@ -22,19 +22,12 @@ commands:
             - v1-repo-{{ .Branch }}-
             - v1-repo-
 
-  save_repo:
-    steps:
-      - save_cache:
-          paths:
-            - .
-          key: v1-repo-{{ .Branch }}-{{ .Revision }}
-
   restore_deps:
     steps:
       - unified_cache
       - restore_cache:
           keys:
-            - v1-repo-{{ checksum "~/lockfiles" }}
+            - v1-dependencies-{{ checksum "~/lockfiles" }}
 
   run_test:
     parameters:
@@ -72,9 +65,14 @@ jobs:
   test_origin:
     executor: node
     steps:
-      - restore_repo
       - run_test:
           cwd: ./packages/lambda-origin-response
+
+  test_shared:
+    executor: node
+    steps:
+      - run_test:
+          cwd: ./packages/shared
 
   # test_viewer:
   #   executor: node
@@ -104,6 +102,9 @@ workflows:
           requires:
             - checkout_code
       - test_origin:
+          requires:
+            - install_deps
+      - test_shared:
           requires:
             - install_deps
       # - test_viewer:

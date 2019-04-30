@@ -150,25 +150,25 @@ describe("validator", () => {
     describe("parameter a is", () => {
       describe("valid (returns true)", () => {
         it("passed 0", async () => {
-          expect(await validate({ a: "0" })).toBeTruthy();
+          await expect(validate({ a: "0" })).resolves.toBeTruthy();
         });
       });
 
       describe("invalid (returns false)", () => {
         it("passed null", async () => {
-          expect(await validate({ a: null })).toBeFalsy();
+          await expect(validate({ a: null })).rejects.toThrow();
         });
 
         it("passed -1", async () => {
-          expect(await validate({ a: -1 })).toBeFalsy();
+          await expect(validate({ a: -1 })).rejects.toThrow();
         });
 
         it("passed 4", async () => {
-          expect(await validate({ a: 4 })).toBeFalsy();
+          await expect(validate({ a: 4 })).rejects.toThrow();
         });
 
         it("passed str", async () => {
-          expect(await validate({ a: "str" })).toBeFalsy();
+          await expect(validate({ a: "str" })).rejects.toThrow();
         });
       });
     });
@@ -176,29 +176,29 @@ describe("validator", () => {
     describe("parameter b is", () => {
       describe("valid (returns true)", () => {
         it("passed 1290ad", async () => {
-          expect(await validate({ b: "1290ad" })).toBeTruthy();
+          await expect(validate({ b: "1290ad" })).resolves.toBeTruthy();
         });
 
         it("passed 1290abef", async () => {
-          expect(await validate({ b: "1290abef" })).toBeTruthy();
+          await expect(validate({ b: "1290abef" })).resolves.toBeTruthy();
         });
       });
 
       describe("invalid (returns false)", () => {
         it("passed null", async () => {
-          expect(await validate({ b: null })).toBeFalsy();
+          await expect(validate({ b: null })).rejects.toThrow();
         });
 
         it("passed ccc", async () => {
-          expect(await validate({ b: "ccc" })).toBeFalsy();
+          await expect(validate({ b: "ccc" })).rejects.toThrow();
         });
 
         it("passed 1290fg", async () => {
-          expect(await validate({ b: "1290fg" })).toBeFalsy();
+          await expect(validate({ b: "1290fg" })).rejects.toThrow();
         });
 
         it("passed 1290ff1h", async () => {
-          expect(await validate({ b: "1290ff1h" })).toBeFalsy();
+          await expect(validate({ b: "1290ff1h" })).rejects.toThrow();
         });
       });
     });
@@ -206,25 +206,25 @@ describe("validator", () => {
     describe("parameter c is", () => {
       describe("valid (returns true)", () => {
         it("passed 1:2:3:4", async () => {
-          expect(await validate({ c: "1:2:3:4" })).toBeTruthy();
+          await expect(validate({ c: "1:2:3:4" })).resolves.toBeTruthy();
         });
       });
 
       describe("invalid (returns false)", () => {
         it("passed null", async () => {
-          expect(await validate({ c: null })).toBeFalsy();
+          await expect(validate({ c: null })).rejects.toThrow();
         });
 
         it("passed 01:2:3:4", async () => {
-          expect(await validate({ c: "01:2:3:4" })).toBeFalsy();
+          await expect(validate({ c: "01:2:3:4" })).rejects.toThrow();
         });
 
         it("passed 1:2:3", async () => {
-          expect(await validate({ c: "1:2:3" })).toBeFalsy();
+          await expect(validate({ c: "1:2:3" })).rejects.toThrow();
         });
 
         it("passed 1:2:3:4:5", async () => {
-          expect(await validate({ c: "1:2:3:4:5" })).toBeFalsy();
+          await expect(validate({ c: "1:2:3:4:5" })).rejects.toThrow();
         });
       });
     });
@@ -232,33 +232,33 @@ describe("validator", () => {
     describe("parameter cr is", () => {
       describe("valid (returns true)", () => {
         it("passed 0:1:0:1", async () => {
-          expect(await validate({ cr: "0:1:0:1" })).toBeTruthy();
+          await expect(validate({ cr: "0:1:0:1" })).resolves.toBeTruthy();
         });
 
         it("passed 0:0.2:0.123456789:1", async () => {
-          expect(await validate({ cr: "0:0.2:0.123456789:1" })).toBeTruthy();
+          await expect(validate({ cr: "0:0.2:0.123456789:1" })).resolves.toBeTruthy();
         });
       });
 
       describe("invalid (returns false)", () => {
         it("passed null", async () => {
-          expect(await validate({ cr: null })).toBeFalsy();
+          await expect(validate({ cr: null })).rejects.toThrow();
         });
 
         it("passed 01:0:1:0", async () => {
-          expect(await validate({ cr: "01:0:1:0" })).toBeFalsy();
+          await expect(validate({ cr: "01:0:1:0" })).rejects.toThrow();
         });
 
         it("passed 1:0:1", async () => {
-          expect(await validate({ cr: "1:0:1" })).toBeFalsy();
+          await expect(validate({ cr: "1:0:1" })).rejects.toThrow();
         });
 
         it("passed 1:0:1:0:1", async () => {
-          expect(await validate({ cr: "1:0:1:0:1" })).toBeFalsy();
+          await expect(validate({ cr: "1:0:1:0:1" })).rejects.toThrow();
         });
 
         it("passed 1.2:0:1:0", async () => {
-          expect(await validate({ cr: "1.2:0:1:0" })).toBeFalsy();
+          await expect(validate({ cr: "1.2:0:1:0" })).rejects.toThrow();
         });
       });
     });
@@ -266,21 +266,21 @@ describe("validator", () => {
     describe("parameter f is", () => {
       describe("valid (returns true)", () => {
         it("passed jpg", async () => {
-          expect(await validate({ f: "jpg" })).toBeTruthy();
+          await expect(validate({ f: "jpg" })).resolves.toBeTruthy();
         });
 
         it("passed webp", async () => {
-          expect(await validate({ f: "webp" })).toBeTruthy();
+          await expect(validate({ f: "webp" })).resolves.toBeTruthy();
         });
       });
 
       describe("invalid (returns false)", () => {
         it("passed null", async () => {
-          expect(await validate({ f: null })).toBeFalsy();
+          await expect(validate({ f: null })).rejects.toThrow();
         });
 
         it("passed bmp", async () => {
-          expect(await validate({ f: "bmp" })).toBeFalsy();
+          await expect(validate({ f: "bmp" })).rejects.toThrow();
         });
       });
     });
@@ -288,25 +288,25 @@ describe("validator", () => {
     describe("parameter g is", () => {
       describe("valid (returns true)", () => {
         it("passed 1", async () => {
-          expect(await validate({ g: "1" })).toBeTruthy();
+          await expect(validate({ g: "1" })).resolves.toBeTruthy();
         });
 
         it("passed 9", async () => {
-          expect(await validate({ g: "9" })).toBeTruthy();
+          await expect(validate({ g: "9" })).resolves.toBeTruthy();
         });
       });
 
       describe("invalid (returns false)", () => {
         it("passed null", async () => {
-          expect(await validate({ g: null })).toBeFalsy();
+          await expect(validate({ g: null })).rejects.toThrow();
         });
 
         it("passed 0", async () => {
-          expect(await validate({ g: "0" })).toBeFalsy();
+          await expect(validate({ g: "0" })).rejects.toThrow();
         });
 
         it("passed 10", async () => {
-          expect(await validate({ g: "10" })).toBeFalsy();
+          await expect(validate({ g: "10" })).rejects.toThrow();
         });
       });
     });
@@ -314,25 +314,25 @@ describe("validator", () => {
     describe("parameter h is", () => {
       describe("valid (returns true)", () => {
         it("passed 1", async () => {
-          expect(await validate({ h: "1" })).toBeTruthy();
+          await expect(validate({ h: "1" })).resolves.toBeTruthy();
         });
 
         it("passed 1080", async () => {
-          expect(await validate({ h: "9999" })).toBeTruthy();
+          await expect(validate({ h: "9999" })).resolves.toBeTruthy();
         });
       });
 
       describe("invalid (returns false)", () => {
         it("passed null", async () => {
-          expect(await validate({ h: null })).toBeFalsy();
+          await expect(validate({ h: null })).rejects.toThrow();
         });
 
         it("passed 0", async () => {
-          expect(await validate({ h: "0" })).toBeFalsy();
+          await expect(validate({ h: "0" })).rejects.toThrow();
         });
 
         it("passed -1", async () => {
-          expect(await validate({ h: "-1" })).toBeFalsy();
+          await expect(validate({ h: "-1" })).rejects.toThrow();
         });
       });
     });
@@ -340,28 +340,28 @@ describe("validator", () => {
     describe("parameter o is", () => {
       describe("valid (returns true)", () => {
         it("passed 0", async () => {
-          expect(await validate({ o: "0" })).toBeTruthy();
+          await expect(validate({ o: "0" })).resolves.toBeTruthy();
         });
 
         it("passed 1", async () => {
-          expect(await validate({ o: "1" })).toBeTruthy();
+          await expect(validate({ o: "1" })).resolves.toBeTruthy();
         });
         it("passed false", async () => {
-          expect(await validate({ o: "false" })).toBeTruthy();
+          await expect(validate({ o: "false" })).resolves.toBeTruthy();
         });
 
         it("passed true", async () => {
-          expect(await validate({ o: "true" })).toBeTruthy();
+          await expect(validate({ o: "true" })).resolves.toBeTruthy();
         });
       });
 
       describe("invalid (returns false)", () => {
         it("passed null", async () => {
-          expect(await validate({ o: null })).toBeFalsy();
+          await expect(validate({ o: null })).rejects.toThrow();
         });
 
         it("passed str", async () => {
-          expect(await validate({ o: "str" })).toBeFalsy();
+          await expect(validate({ o: "str" })).rejects.toThrow();
         });
       });
     });
@@ -369,25 +369,25 @@ describe("validator", () => {
     describe("parameter q is", () => {
       describe("valid (returns true)", () => {
         it("passed 1", async () => {
-          expect(await validate({ q: "1" })).toBeTruthy();
+          await expect(validate({ q: "1" })).resolves.toBeTruthy();
         });
 
         it("passed 100", async () => {
-          expect(await validate({ q: "100" })).toBeTruthy();
+          await expect(validate({ q: "100" })).resolves.toBeTruthy();
         });
       });
 
       describe("invalid (returns false)", () => {
         it("passed null", async () => {
-          expect(await validate({ q: null })).toBeFalsy();
+          await expect(validate({ q: null })).rejects.toThrow();
         });
 
         it("passed -1", async () => {
-          expect(await validate({ q: "-1" })).toBeFalsy();
+          await expect(validate({ q: "-1" })).rejects.toThrow();
         });
 
         it("passed 101", async () => {
-          expect(await validate({ q: "101" })).toBeFalsy();
+          await expect(validate({ q: "101" })).rejects.toThrow();
         });
       });
     });
@@ -395,29 +395,29 @@ describe("validator", () => {
     describe("parameter r is", () => {
       describe("valid (returns true)", () => {
         it("passed 1", async () => {
-          expect(await validate({ r: "1" })).toBeTruthy();
+          await expect(validate({ r: "1" })).resolves.toBeTruthy();
         });
 
         it("passed 8", async () => {
-          expect(await validate({ r: "8" })).toBeTruthy();
+          await expect(validate({ r: "8" })).resolves.toBeTruthy();
         });
 
         it("passed auto", async () => {
-          expect(await validate({ r: "auto" })).toBeTruthy();
+          await expect(validate({ r: "auto" })).resolves.toBeTruthy();
         });
       });
 
       describe("invalid (returns false)", () => {
         it("passed null", async () => {
-          expect(await validate({ r: null })).toBeFalsy();
+          await expect(validate({ r: null })).rejects.toThrow();
         });
 
         it("passed 0", async () => {
-          expect(await validate({ r: "0" })).toBeFalsy();
+          await expect(validate({ r: "0" })).rejects.toThrow();
         });
 
         it("passed 9", async () => {
-          expect(await validate({ r: "9" })).toBeFalsy();
+          await expect(validate({ r: "9" })).rejects.toThrow();
         });
       });
     });
@@ -425,29 +425,29 @@ describe("validator", () => {
     describe("parameter through is", () => {
       describe("valid (returns true)", () => {
         it("passed jpg", async () => {
-          expect(await validate({ through: "jpg" })).toBeTruthy();
+          await expect(validate({ through: "jpg" })).resolves.toBeTruthy();
         });
 
         it("passed jpg:png", async () => {
-          expect(await validate({ through: "jpg:png" })).toBeTruthy();
+          await expect(validate({ through: "jpg:png" })).resolves.toBeTruthy();
         });
       });
 
       describe("invalid (returns false)", () => {
         it("passed null", async () => {
-          expect(await validate({ through: null })).toBeFalsy();
+          await expect(validate({ through: null })).rejects.toThrow();
         });
 
         it("passed bmp", async () => {
-          expect(await validate({ through: "bmp" })).toBeFalsy();
+          await expect(validate({ through: "bmp" })).rejects.toThrow();
         });
 
         it("passed jpg:", async () => {
-          expect(await validate({ through: "jpg:" })).toBeFalsy();
+          await expect(validate({ through: "jpg:" })).rejects.toThrow();
         });
 
         it("passed jpg:bmp", async () => {
-          expect(await validate({ through: "jpg:bmp" })).toBeFalsy();
+          await expect(validate({ through: "jpg:bmp" })).rejects.toThrow();
         });
       });
     });
@@ -455,28 +455,28 @@ describe("validator", () => {
     describe("parameter u is", () => {
       describe("valid (returns true)", () => {
         it("passed 0", async () => {
-          expect(await validate({ u: "0" })).toBeTruthy();
+          await expect(validate({ u: "0" })).resolves.toBeTruthy();
         });
 
         it("passed 1", async () => {
-          expect(await validate({ u: "1" })).toBeTruthy();
+          await expect(validate({ u: "1" })).resolves.toBeTruthy();
         });
         it("passed false", async () => {
-          expect(await validate({ u: "false" })).toBeTruthy();
+          await expect(validate({ u: "false" })).resolves.toBeTruthy();
         });
 
         it("passed true", async () => {
-          expect(await validate({ u: "true" })).toBeTruthy();
+          await expect(validate({ u: "true" })).resolves.toBeTruthy();
         });
       });
 
       describe("invalid (returns false)", () => {
         it("passed null", async () => {
-          expect(await validate({ u: null })).toBeFalsy();
+          await expect(validate({ u: null })).rejects.toThrow();
         });
 
         it("passed str", async () => {
-          expect(await validate({ u: "str" })).toBeFalsy();
+          await expect(validate({ u: "str" })).rejects.toThrow();
         });
       });
     });
@@ -484,13 +484,13 @@ describe("validator", () => {
     describe("parameter v is", () => {
       describe("valid (returns true)", () => {
         it("passed str", async () => {
-          expect(await validate({ v: "str" })).toBeTruthy();
+          await expect(validate({ v: "str" })).resolves.toBeTruthy();
         });
       });
 
       describe("invalid (returns false)", () => {
         it("passed null", async () => {
-          expect(await validate({ v: null })).toBeFalsy();
+          await expect(validate({ v: null })).rejects.toThrow();
         });
       });
     });
@@ -498,25 +498,25 @@ describe("validator", () => {
     describe("parameter w is", () => {
       describe("valid (returns true)", () => {
         it("passed 1", async () => {
-          expect(await validate({ w: "1" })).toBeTruthy();
+          await expect(validate({ w: "1" })).resolves.toBeTruthy();
         });
 
         it("passed 1080", async () => {
-          expect(await validate({ w: "9999" })).toBeTruthy();
+          await expect(validate({ w: "9999" })).resolves.toBeTruthy();
         });
       });
 
       describe("invalid (returns false)", () => {
         it("passed null", async () => {
-          expect(await validate({ h: null })).toBeFalsy();
+          await expect(validate({ w: null })).rejects.toThrow();
         });
 
         it("passed 0", async () => {
-          expect(await validate({ w: "0" })).toBeFalsy();
+          await expect(validate({ w: "0" })).rejects.toThrow();
         });
 
         it("passed -1", async () => {
-          expect(await validate({ w: "-1" })).toBeFalsy();
+          await expect(validate({ w: "-1" })).rejects.toThrow();
         });
       });
     });
