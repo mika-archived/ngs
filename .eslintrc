@@ -7,7 +7,8 @@
     "project": "./tsconfig.json"
   },
   "rules": {
-    // https://github.com/airbnb/javascript/blob/60b96d322277c4c71a21a05caba8eb3320e0e3fa/packages/eslint-config-airbnb-base/rules/imports.js#L71-L95
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/*{.,_}{test,spec}.{js,ts}"] }]
   }
 }
