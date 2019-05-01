@@ -14,7 +14,8 @@ const handler = async (event: CloudFrontRequestEvent, _context: Context, callbac
     headers[w] = request.headers[w].map(v => v.value).join("");
   });
 
-  request.uri = await rewrite(`${request.uri}?${request.querystring}`, headers);
+  const uri = request.querystring ? `${request.uri}?${request.querystring}` : request.uri;
+  request.uri = await rewrite(uri, headers);
   return callback(null, request);
 };
 

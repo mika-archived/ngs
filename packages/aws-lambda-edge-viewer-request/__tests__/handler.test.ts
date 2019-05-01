@@ -30,7 +30,8 @@ describe("handler", () => {
       });
 
       it("returns /c/f=webp,h=128,v=10,w=128/anna.png", async () => {
-        handler(event, {} as Context, (error, request) => {
+        expect.assertions(2);
+        await handler(event, {} as Context, (error, request) => {
           expect(error).toBeNull();
           expect((request as any).uri).toBe("/c/f=webp,h=128,v=10,w=128/anna.png");
         });
@@ -42,10 +43,11 @@ describe("handler", () => {
         event = createEvent(await import("./fixtures/2.json"));
       });
 
-      it("returns /c/f=webp,h=256,w=256/anna.png", async () => {
-        handler(event, {} as Context, (error, request) => {
+      it("returns /c/f=webp,h=256,q=100,w=256/anna.png", async () => {
+        expect.assertions(2);
+        await handler(event, {} as Context, (error, request) => {
           expect(error).toBeNull();
-          expect((request as any).uri).toBe("/c/f=webp,h=128,v=10,w=128/anna.png");
+          expect((request as any).uri).toBe("/c/f=webp,h=256,q=100,w=256/anna.png");
         });
       });
     });

@@ -51,6 +51,6 @@
     ]
   },
   "method": "GET",
-  "querystring": "w=256&h=256&z=100",
+  "querystring": "w=256&h=256&q=100",
   "uri": "/anna.png"
 }
