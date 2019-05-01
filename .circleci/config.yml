@@ -83,7 +83,7 @@ jobs:
     executor: node
     steps:
       - run_test:
-          cwd: ./packages/aws-lambda-viewer-request
+          cwd: ./packages/aws-lambda-edge-viewer-request
 
   # test_stacks:
   #   executor: node
