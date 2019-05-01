@@ -68,10 +68,10 @@ jobs:
           key: v1-dependencies-{{ checksum "~/lockfiles" }}
 
   # test_origin:
-    # executor: node
-    # steps:
-      # - run_test:
-          # cwd: ./packages/lambda-origin-response
+  # executor: node
+  # steps:
+  # - run_test:
+  # cwd: ./packages/lambda-origin-response
 
   test_shared:
     executor: node
@@ -79,10 +79,11 @@ jobs:
       - run_test:
           cwd: ./packages/shared
 
-  # test_viewer:
-  #   executor: node
-  #   steps:
-  #     - restore_repo
+  test_viewer:
+    executor: node
+    steps:
+      - run_test:
+          cwd: ./packages/aws-lambda-viewer-request
 
   # test_stacks:
   #   executor: node
@@ -108,18 +109,17 @@ workflows:
           requires:
             - checkout_code
       # - test_origin:
-          # requires:
-            # - install_deps
+      # requires:
+      # - install_deps
       - test_shared:
           requires:
             - install_deps
-      # - test_viewer:
-      #     requires:
-      #       - checkout_code
+      - test_viewer:
+          requires:
+            - install_deps
       # - test_stacks:
       #     requires:
       #       - checkout_code
       - lint:
           requires:
             - install_deps
-

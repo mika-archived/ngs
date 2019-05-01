@@ -1,0 +1,56 @@
+{
+  "clientIp": "",
+  "headers": {
+    "host": [
+      {
+        "key": "Host",
+        "value": "ngs.mochizuki.moe"
+      }
+    ],
+    "user-agent": [
+      {
+        "key": "User-Agent",
+        "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"
+      }
+    ],
+    "upgrade-insecure-requests": [
+      {
+        "key": "upgrade-insecure-requests",
+        "value": "1"
+      }
+    ],
+    "dnt": [
+      {
+        "key": "dnt",
+        "value": "1"
+      }
+    ],
+    "accept": [
+      {
+        "key": "accept",
+        "value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3"
+      }
+    ],
+    "accept-encoding": [
+      {
+        "key": "accept-encoding",
+        "value": "gzip, deflate, br"
+      }
+    ],
+    "accept-language": [
+      {
+        "key": "accept-language",
+        "value": "ja,en-US;q=0.9,en;q=0.8,es;q=0.7"
+      }
+    ],
+    "cookie": [
+      {
+        "key": "cookie",
+        "value": ""
+      }
+    ]
+  },
+  "method": "GET",
+  "querystring": "",
+  "uri": "/c/w=128,h=128,v=10/anna.png"
+}
