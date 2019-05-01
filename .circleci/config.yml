@@ -40,6 +40,7 @@ commands:
     steps:
       - restore_repo
       - restore_deps
+      - run: yarn --cwd ./packages/shared install --frozen-lockfile
       - run: yarn --cwd << parameters.cwd >> install --frozen-lockfile
       - run: yarn --cwd << parameters.cwd >> test
 
