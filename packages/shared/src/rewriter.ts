@@ -9,7 +9,7 @@ import sanitize from "./sanitizer";
 
 const IMAGEFLUX_PARAMETER_FORMAT = /\/c\/(.+?)\//;
 
-type KeyValuePair = {
+export type KeyValuePair = {
   [key: string]: string;
 };
 
