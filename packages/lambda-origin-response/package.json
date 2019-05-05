@@ -17,7 +17,7 @@
     "@types/jest": "24.0.12",
     "@types/sharp": "0.22.1",
     "@types/yup": "0.26.13",
-    "jest": "24.7.1",
+    "jest": "24.8.0",
     "ts-jest": "24.0.2",
     "typescript": "3.4.5"
   },
