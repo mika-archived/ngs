@@ -80,7 +80,13 @@ jobs:
       - run_test:
           cwd: ./packages/shared
 
-  test_viewer:
+  test_aws:
+    executor: node
+    steps:
+      - run_test:
+          cwd: ./packages/aws
+
+  test_aws_viewer:
     executor: node
     steps:
       - run_test:
@@ -109,13 +115,13 @@ workflows:
       - install_deps:
           requires:
             - checkout_code
-      # - test_origin:
-      # requires:
-      # - install_deps
       - test_shared:
           requires:
             - install_deps
-      - test_viewer:
+      - test_aws:
+          requires:
+            - install_deps
+      - test_aws_viewer:
           requires:
             - install_deps
       # - test_stacks:
