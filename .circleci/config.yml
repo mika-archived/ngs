@@ -84,8 +84,15 @@ jobs:
   test_aws:
     executor: node
     steps:
-      - run_test:
-          cwd: ./packages/aws
+      - restore_repo
+      - restore_deps
+      - run: yarn --cwd ./packages/shared install --frozen-lockfile
+      - run: yarn --cwd ./packages/aws-lambda-edge-viewer-request install --frozen-lockfile
+      - run: yarn --cwd ./packages/lambda-origin-response         install --frozen-lockfile
+      - run: yarn --cwd ./packages/aws-lambda-edge-viewer-request build
+      - run: yarn --cwd ./packages/lambda-origin-response         build
+      - run: yarn --cwd ./packages/aws install --frozen-lockfile
+      - run: yarn --cwd ./packages/aws test
 
   test_aws_viewer:
     executor: node
