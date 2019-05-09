@@ -13,6 +13,7 @@ commands:
   unified_cache:
     steps:
       - run: md5sum $(find . -type d -name 'node_modules' -prune -o -type f -name 'yarn.lock' -print) | sort -r > ~/lockfiles
+      - run: cat ~/lockfiles
 
   restore_repo:
     steps:
