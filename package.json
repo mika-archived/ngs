@@ -11,7 +11,7 @@
     "lint": "eslint"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "1.7.0",
+    "@typescript-eslint/eslint-plugin": "1.8.0",
     "eslint": "5.16.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-config-prettier": "4.2.0",
