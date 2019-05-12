@@ -1,5 +1,7 @@
 {
-  "extends": ["config:base"],
+  "extends": [
+    "config:base"
+  ],
   "timezone": "Asia/Tokyo",
   "schedule": "after 9:30am and before 5:30pm",
   "patch": {
@@ -15,11 +17,24 @@
   },
   "packageRules": [
     {
-      "packageNames": ["aws-cdk"],
-      "packagePatterns": ["^@aws-cdk/"],
+      "packageNames": [
+        "aws-cdk"
+      ],
+      "packagePatterns": [
+        "^@aws-cdk/"
+      ],
       "groupName": "aws-cdk monorepo",
       "patch": {
         "automerge": false
+      }
+    },
+    {
+      "packageNames": [
+        "aws-sdk"
+      ],
+      "groupName": "aws-sdk",
+      "minor": {
+        "automerge": true
       }
     }
   ]
