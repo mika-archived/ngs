@@ -126,9 +126,9 @@ workflows:
       - test_shared:
           requires:
             - install_deps
-      - test_aws:
-          requires:
-            - install_deps
+      # - test_aws:
+      #     requires:
+      #       - install_deps
       - test_aws_viewer:
           requires:
             - install_deps
