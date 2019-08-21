@@ -22,7 +22,7 @@
     "typescript": "3.5.3"
   },
   "dependencies": {
-    "aws-sdk": "2.513.0",
+    "aws-sdk": "2.514.0",
     "sharp": "0.22.1",
     "yup": "0.27.0"
   }
