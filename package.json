@@ -16,7 +16,7 @@
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-config-prettier": "6.0.0",
     "eslint-plugin-import": "2.18.2",
-    "eslint-plugin-jest": "22.9.0",
+    "eslint-plugin-jest": "22.21.0",
     "eslint-plugin-prettier": "3.1.2",
     "lerna": "3.16.5",
     "prettier": "1.19.1",
