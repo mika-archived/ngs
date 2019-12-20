@@ -19,7 +19,7 @@
     "@types/yup": "0.26.14",
     "jest": "24.8.0",
     "ts-jest": "24.0.2",
-    "typescript": "3.5.3"
+    "typescript": "3.7.4"
   },
   "dependencies": {
     "aws-sdk": "2.591.0",
