@@ -20,6 +20,6 @@
     "eslint-plugin-prettier": "3.1.2",
     "lerna": "3.16.5",
     "prettier": "1.19.1",
-    "typescript": "3.5.3"
+    "typescript": "3.7.4"
   }
 }
