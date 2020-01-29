@@ -21,6 +21,6 @@
     "typescript": "3.7.5"
   },
   "dependencies": {
-    "yup": "0.28.0"
+    "yup": "0.28.1"
   }
 }
